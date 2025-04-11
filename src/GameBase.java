@@ -83,7 +83,7 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener {
 	public abstract void initialize();
 
 	public void init() {
-		offScreen = this.createImage(800, 600);
+		offScreen = this.createImage(1920, 1080);
 		offScreen_pen = offScreen.getGraphics();
 
 		initialize();
@@ -108,7 +108,7 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener {
 	}
 
 	public void update(Graphics pen) {
-		offScreen_pen.clearRect(0, 0, 800, 600);
+		offScreen_pen.clearRect(0, 0, 1920, 1080);
 		paint(offScreen_pen);
 		pen.drawImage(offScreen, 0, 0, null);
 	}
@@ -122,6 +122,7 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
+		
 	}
 	
 }
