@@ -37,10 +37,10 @@ public class Rect {
 	}
 	
 	public void pushAwayFrom(Rect r) {
-		if(wasLeftOf(r)) pushLeftOf(r);
-		if(wasRightOf(r)) pushRightOf(r);
-		if(wasAbove(r)) pushAbove(r);
-		if(wasBelow(r)) pushBelow(r);
+		if(wasLeftOf(r))	pushLeftOf(r);
+		if(wasRightOf(r))	pushRightOf(r);
+		if(wasAbove(r))	    pushAbove(r);
+		if(wasBelow(r))	    pushBelow(r);
 	}
 	
 	public boolean wasLeftOf(Rect r) {

@@ -103,7 +103,8 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener {
 			repaint();
 			try {
 				t.sleep(16);
-			} catch (Exception x) {}
+			} catch (Exception x) {
+			}
 		}
 	}
 
@@ -122,7 +123,7 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
-	
+
 }

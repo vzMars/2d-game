@@ -2,24 +2,24 @@ import java.awt.Graphics;
 
 public class Game extends GameBase {
 	
-	Rect r = new Rect(100,100,50,50);
+	Player player = new Player(100, 100);
 	Rect[] wall = new Rect[4];
 
 	public void inGameLoop() {
-		if(pressing[UP])   r.go_UP(2);
-		if(pressing[DN])   r.go_DN(2);
-		if(pressing[LT])   r.go_LT(2);
-		if(pressing[RT])   r.go_RT(2);
+		if(pressing[UP])	player.moveUp(2);
+		if(pressing[DN])	player.moveDown(2);
+		if(pressing[LT])	player.moveLeft(2);
+		if(pressing[RT])	player.moveRight(2);
 		
 		for(int i = 0; i < wall.length; i++) {
-			if(r.overlaps(wall[i])) {
-				r.pushAwayFrom(wall[i]);
+			if(player.overlaps(wall[i])) {
+				player.pushAwayFrom(wall[i]);
 			}
 		}
 	}
 
 	public void paint(Graphics pen) {
-		r.draw(pen);
+		player.draw(pen);
 		
 		for(int i = 0; i < wall.length; i++ ) {
 			wall[i].draw(pen);
