@@ -2,7 +2,8 @@ import java.awt.Graphics;
 
 public class Game extends GameBase {
 	
-	Player player = new Player(100, 100);
+//	Player player = new Player(100, 100);
+	Skeleton player = new Skeleton(100, 100);
 	Rect[] wall = new Rect[4];
 
 	public void inGameLoop() {
