@@ -3,7 +3,7 @@ public class Ghost extends Sprite {
 	
 	static String[] pose = { "up", "dn", "lt", "rt" };
 
-	public Ghost(int x, int y) {
-		super("g", x, y, 64, 64, pose, 3, 10);
+	public Ghost(int x, int y, int scale) {
+		super("g", x, y, scale, scale, pose, 3, 10);
 	}
 }

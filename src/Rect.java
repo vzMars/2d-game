@@ -13,22 +13,6 @@ public class Rect {
 		this.h = h;
 	}
 
-	public void go_UP(int dy) {
-		y -= dy;
-	}
-
-	public void go_DN(int dy) {
-		y += dy;
-	}
-
-	public void go_LT(int dx) {
-		x -= dx;
-	}
-
-	public void go_RT(int dx) {
-		x += dx;
-	}
-
 	public boolean overlaps(Rect r) {
 		return (x <= r.x + r.w) &&
 			   (x + w >= r.x)   &&
