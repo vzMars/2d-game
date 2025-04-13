@@ -2,7 +2,7 @@ import java.awt.Graphics;
 
 public class WorldMap {
 	
-	static String[] fileName = {
+	String[] fileName = {
 			"world-map.txt", 
 			"world-map-border-top.txt",
 			"world-map-border-right.txt",
@@ -10,29 +10,65 @@ public class WorldMap {
 			"world-map-border-left.txt",
 			"world-map-objects.txt"};
 	
-	TileMap worldMap;
-	TileMap worldMapTop;
-	TileMap worldMapRight;
-	TileMap worldMapBottom;
-	TileMap worldMapLeft;
-	TileMap worldMapObjects;
-
+	TileMap tileMap[] = new TileMap[fileName.length];
+	Rect[] wall;
+	static int index = 0;
+	int scale;
+	
 	public WorldMap(int scale) {
-		worldMap = new TileMap(fileName[0], scale);
-		worldMapTop = new TileMap(fileName[1], scale);
-		worldMapRight = new TileMap(fileName[2], scale);
-		worldMapBottom = new TileMap(fileName[3], scale);
-		worldMapLeft = new TileMap(fileName[4], scale);
-		worldMapObjects = new TileMap(fileName[5], scale);
+		this.scale = scale;
+		for(int i = 0; i < tileMap.length; i++) {
+			tileMap[i] = new TileMap(fileName[i], scale);
+		}
+		loadWalls();
 	}
 	
 	public void draw(Graphics pen) {
-		worldMap.draw(pen);
-		worldMapTop.draw(pen);
-		worldMapRight.draw(pen);
-		worldMapBottom.draw(pen);
-		worldMapLeft.draw(pen);
-		worldMapObjects.draw(pen);
+		for(int i = 0; i < tileMap.length; i++) {
+			tileMap[i].draw(pen);
+		}
+	}
+	
+	public void loadWalls() {
+		int count = 0;
+		
+		for(int i = 0; i < tileMap.length; i++) {
+			count += getWallCount(tileMap[i].map);
+		}
+
+		wall = new Rect[count];
+		
+		for(int i = 0; i < tileMap.length; i++) {
+			createWalls(tileMap[i].map);
+		}
+	}
+	
+	public int getWallCount(String[] map) {
+		int count = 0;
+		for(int i = 0; i < map.length; i++) {
+			for(int j = 0; j < map[i].length(); j++) {
+				char c = map[i].charAt(j);
+				
+				if(c == 'W' || c == 'M' || c == 'T') {
+					count++;
+				}
+			}
+		}
+		
+		return count;
+	}
+	
+	public void createWalls(String[] map) {
+		for(int i = 0; i < map.length; i++) {
+			for(int j = 0; j < map[i].length(); j++) {
+				char c = map[i].charAt(j);
+				
+				if(c == 'W' || c == 'M' || c == 'T') {
+					wall[index] = new Rect(j * scale, i * scale, scale / 2, scale / 2);
+					index++;
+				}
+			}
+		}
 	}
 	
 }

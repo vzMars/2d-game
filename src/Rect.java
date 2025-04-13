@@ -28,19 +28,19 @@ public class Rect {
 	}
 	
 	public boolean wasLeftOf(Rect r) {
-		return x - 2 < r.x - w + 1;
+		return x - 4 < r.x - w + 1;
 	}
 	
 	public boolean wasRightOf(Rect r) {
-		return x + 2 > r.x + r.w - 1;
+		return x + 4 > r.x + r.w - 1;
 	}
 
 	public boolean wasAbove(Rect r) {
-		return y - 2 < r.y - h + 1;
+		return y - 4 < r.y - h + 1;
 	}
 	
 	public boolean wasBelow(Rect r) {
-		return y + 2 > r.y + r.h - 1;
+		return y + 4 > r.y + r.h - 1;
 	}
 
 	public void pushLeftOf(Rect r) {
