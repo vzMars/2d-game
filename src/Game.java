@@ -2,7 +2,7 @@ import java.awt.Graphics;
 
 public class Game extends GameBase {
 	
-	Player player = new Player(300, 500, 64);
+	Player player = new Player(350, 600, 64);
 	WorldMap worldMap = new WorldMap(64);
 
 	public void inGameLoop() {
