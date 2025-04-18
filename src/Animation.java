@@ -40,5 +40,5 @@ public class Animation {
 	public Image stillImage() {
 		return image[0];
 	}
-
+	
 }

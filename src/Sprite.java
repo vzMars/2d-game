@@ -55,5 +55,5 @@ public class Sprite extends Rect {
 		moving = true;
 		pose = RT;
 	}
-
+	
 }
