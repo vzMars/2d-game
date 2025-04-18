@@ -15,8 +15,16 @@ public class Town extends Room {
 	}
 
 	public void inGameLoopRoomSpecific() {
-		// TODO Auto-generated method stub
-		
+		enterCave1();
+	}
+	
+	public void enterCave1() {
+		if ((player.x >= 1505 && player.x <= 1535) && 
+			(player.y >= 133 && player.y <= 145)) {
+				Room.current = Room.room[2];
+				player.x = 131;
+				player.y = 367;
+		}
 	}
 
 }

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class WorldMap extends Room {
@@ -16,15 +15,15 @@ public class WorldMap extends Room {
 	}
 
 	public void inGameLoopRoomSpecific() {
-//		System.out.println("Player current x: " + player.x);
-//		System.out.println("Player current y: " + player.y);
 		enterTown();
 	}
 	
 	public void enterTown() {
 		if ((player.x >= 993 && player.x <= 1045) && 
-				(player.y >= 225 && player.y < 275)) {
+			(player.y >= 225 && player.y <= 275)) {
 				Room.current = Room.room[1];
+				player.x = 895;
+				player.y = 1159;
 		}
 	}
 	

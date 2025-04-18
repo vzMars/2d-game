@@ -14,8 +14,16 @@ public class Cave1 extends Room {
 	}
 
 	public void inGameLoopRoomSpecific() {
-		// TODO Auto-generated method stub
-		
+		enterCave2();
+	}
+	
+	public void enterCave2() {
+		if ((player.x >= 1839 && player.x <= 1855) && 
+			(player.y >= 545 && player.y <= 575)) {
+				Room.current = Room.room[3];
+				player.x = 51;
+				player.y = 549;
+		}
 	}
 
 }
