@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class Room extends RoomBase {
@@ -11,6 +10,12 @@ public abstract class Room extends RoomBase {
 	static int count = 0;
 	
 	static Room[] room = new Room[5];
+
+	static Rect[] offscreen = {
+			new Rect(0, -70, SCALE * 30, SCALE), 
+			new Rect(1920, 0, SCALE, SCALE * 30),
+			new Rect(0, 1280, SCALE * 30, SCALE),
+			new Rect(-80, 0, SCALE, SCALE * 30)};
 	
 	static Room current;
 	
@@ -48,28 +53,10 @@ public abstract class Room extends RoomBase {
 	}
 	
 	public void checkOffScreen() {
-//		Rect offscreen = new Rect(-1, player.y, SCALE, SCALE);
-//		Rect rightOffscreen = new Rect(1920, player.y, SCALE, SCALE);
-//		Rect topOffscreen = new Rect(player.x, -1, SCALE, SCALE);
-//		Rect bottomOffscreen = new Rect(player.x, 1280, SCALE, SCALE);
-		Rect top = new Rect(0, -70, SCALE * 30, SCALE);
-		Rect left = new Rect(-80, 0, SCALE, SCALE * 30);
-		Rect bottom = new Rect(0, 1280, SCALE * 30, SCALE);
-		
-
-		if(player.overlaps(top) ) {
-			player.pushAwayFrom(top);
+		for(int i = 0; i < offscreen.length; i++) {
+			if(player.overlaps(offscreen[i])) {
+				player.pushAwayFrom(offscreen[i]);
+			}
 		}
-		
-		if(player.overlaps(bottom) ) {
-			player.pushAwayFrom(bottom);
-		}
-		
-		if(player.overlaps(left) ) {
-			player.pushAwayFrom(left);
-		}
-//		System.out.println("current x: " + player.x);
-//		System.out.println("current y: " + player.y);
-//		if(player.x < 0) player.pushAwayFrom(new Rect(-1, player.y, SCALE, SCALE));
 	}
 }

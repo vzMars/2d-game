@@ -31,8 +31,6 @@ public class WorldMap extends Room {
 	public void draw(Graphics pen) {
 		map.draw(pen);
 		player.draw(pen);
-//		pen.setColor(Color.RED);
-//		pen.fillRect(0, 1280, SCALE * 30, SCALE);
 	}
 
 }
