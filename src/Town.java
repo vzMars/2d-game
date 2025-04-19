@@ -11,25 +11,39 @@ public class Town extends Room {
 			"town-map-objects.txt",
 			"town-map-invisible-walls.txt"};
 	
-	Girl girl;
+	Girl girl1;
+	Girl girl2;
 	
 	public Town() {
 		super(filename);
-		girl = new Girl(259, 567, SCALE);
-		girl.setVelocityX(2);
+		girl1 = new Girl(253, 387, SCALE);
+		girl2 = new Girl(1335, 367, SCALE);
+		girl1.setVelocityY(1);
+		girl2.setVelocityX(-1);
 	}
 
 	public void inGameLoopRoomSpecific() {
-		girl.moveX();
+		townNpcMovement();
+		enterCave1();
+	}
+	
+	public void townNpcMovement() {
+		girl1.moveY();
+		girl2.moveX();
 		
-		checkWalls(girl);
-		checkOffScreen(girl);
+		checkWalls(girl1);
+		checkOffScreen(girl1);
 		
-		if(player.overlaps(girl)) {
-			girl.bounceOffHorizontalSurface();
+		checkWalls(girl2);
+		checkOffScreen(girl2);
+		
+		if(player.overlaps(girl1)) {
+			girl1.bounceOffVerticalSurface();;
 		}
 		
-		enterCave1();
+		if(player.overlaps(girl2)) {
+			girl2.bounceOffHorizontalSurface();
+		}
 	}
 	
 	public void enterCave1() {
@@ -44,7 +58,8 @@ public class Town extends Room {
 	public void draw(Graphics pen) {
 		map.draw(pen);
 		player.draw(pen);
-		girl.draw(pen);
+		girl1.draw(pen);
+		girl2.draw(pen);
 	}
 
 }

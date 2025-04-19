@@ -14,6 +14,8 @@ public class Cave1 extends Room {
 	}
 
 	public void inGameLoopRoomSpecific() {
+		System.out.println("Player current x: " + player.x);
+		System.out.println("Player current y: " + player.y);
 		enterCave2();
 	}
 	

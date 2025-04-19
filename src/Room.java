@@ -32,9 +32,6 @@ public abstract class Room extends RoomBase {
 	public abstract void inGameLoopRoomSpecific();
 	
 	public void inGameLoop() {
-//		System.out.println("Player current x: " + player.x);
-//		System.out.println("Player current y: " + player.y);
-		
 		if(pressing[SPACE]) player.attack();
 		if(pressing[UP])	player.moveUp(4);
 		if(pressing[DN])	player.moveDown(4);
