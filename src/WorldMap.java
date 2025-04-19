@@ -27,9 +27,4 @@ public class WorldMap extends Room {
 		}
 	}
 	
-	public void draw(Graphics pen) {
-		map.draw(pen);
-		player.draw(pen);
-	}
-
 }

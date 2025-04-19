@@ -11,6 +11,9 @@ public class Sprite extends Rect {
 	final int RT = 3;
 
 	int pose = DN;
+	
+	int vx;
+	int vy;
 
 	public Sprite(String name, int x, int y, int w, int h, String[] pose, int count, int duration) {
 		super(x, y, w, h);
@@ -54,6 +57,42 @@ public class Sprite extends Rect {
 		x += dx;		
 		moving = true;
 		pose = RT;
+	}
+	
+	public void setVelocityX(int vx) {
+		this.vx = vx;
+	}
+	
+	public void setVelocityY(int vy) {
+		this.vy = vy;
+	}
+	
+	public void moveX() {
+		x += vx;
+		moving = true;
+		if (vx < 0) {
+			pose = LT;
+		} else {
+			pose = RT;
+		}
+	}
+	
+	public void moveY() {
+		y += vy;
+		moving = true;
+		if (vy < 0) {
+			pose = UP;
+		} else {
+			pose = DN;
+		}
+	}
+	
+	public void bounceOffVerticalSurface() {
+		vy = -vy;
+	}
+	
+	public void bounceOffHorizontalSurface() {
+		vx = -vx;
 	}
 	
 }

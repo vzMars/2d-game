@@ -32,8 +32,8 @@ public abstract class Room extends RoomBase {
 	public abstract void inGameLoopRoomSpecific();
 	
 	public void inGameLoop() {
-		System.out.println("Player current x: " + player.x);
-		System.out.println("Player current y: " + player.y);
+//		System.out.println("Player current x: " + player.x);
+//		System.out.println("Player current y: " + player.y);
 		
 		if(pressing[SPACE]) player.attack();
 		if(pressing[UP])	player.moveUp(4);
@@ -41,24 +41,35 @@ public abstract class Room extends RoomBase {
 		if(pressing[LT])	player.moveLeft(4);
 		if(pressing[RT])	player.moveRight(4);
 		
-		checkWalls();
-		checkOffScreen();
+		checkWalls(player);
+		checkOffScreen(player);
 		inGameLoopRoomSpecific();
-		
 	}
 	
-	public void checkWalls() {
+	public void checkWalls(Sprite s) {
 		for(int i = 0; i < map.wall.length; i++) {
-			if(player.overlaps(map.wall[i])) {
-				player.pushAwayFrom(map.wall[i]);
+			if(s.overlaps(map.wall[i])) {
+				pushAway(s, map.wall[i]);
 			}
 		}
 	}
 	
-	public void checkOffScreen() {
+	public void checkOffScreen(Sprite s) {
 		for(int i = 0; i < offscreen.length; i++) {
-			if(player.overlaps(offscreen[i])) {
-				player.pushAwayFrom(offscreen[i]);
+			if(s.overlaps(offscreen[i])) {
+				pushAway(s, offscreen[i]);
+			}
+		}
+	}
+	
+	public void pushAway(Sprite s, Rect r) {
+		if(s instanceof Player) {
+			s.pushAwayFrom(r);
+		} else {
+			if(s.vx > 0 || s.vx < 0) {
+				s.bounceOffHorizontalSurface();
+			} else {
+				s.bounceOffVerticalSurface();
 			}
 		}
 	}

@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public class Town extends Room {
 	
@@ -10,11 +11,24 @@ public class Town extends Room {
 			"town-map-objects.txt",
 			"town-map-invisible-walls.txt"};
 	
+	Girl girl;
+	
 	public Town() {
 		super(filename);
+		girl = new Girl(259, 567, SCALE);
+		girl.setVelocityX(2);
 	}
 
 	public void inGameLoopRoomSpecific() {
+		girl.moveX();
+		
+		checkWalls(girl);
+		checkOffScreen(girl);
+		
+		if(player.overlaps(girl)) {
+			girl.bounceOffHorizontalSurface();
+		}
+		
 		enterCave1();
 	}
 	
@@ -25,6 +39,12 @@ public class Town extends Room {
 				player.x = 131;
 				player.y = 367;
 		}
+	}
+	
+	public void draw(Graphics pen) {
+		map.draw(pen);
+		player.draw(pen);
+		girl.draw(pen);
 	}
 
 }
