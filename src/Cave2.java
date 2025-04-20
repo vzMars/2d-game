@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public class Cave2 extends Room {
 
@@ -9,11 +10,25 @@ public class Cave2 extends Room {
 			"cave2-border-left.txt",
 			"cave2-objects.txt"};
 	
+	Sprite[] monster = {
+			new Slime(283, 561, SCALE),
+			new Slime(567, 489, SCALE),
+			new Slime(555, 633, SCALE),
+			new Slime(807, 569, SCALE),
+			new Slime(1059, 501, SCALE),
+			new Slime(1279, 565, SCALE),
+			new Slime(1483, 639, SCALE),
+			new Slime(1679, 489, SCALE)};
+	
 	public Cave2() {
 		super(filename);
 	}
 
 	public void inGameLoopRoomSpecific() {
+		monsterMovement(monster);
+		
+		playerAttackMonster(monster);
+		
 		enterCave3();
 	}
 	
@@ -23,6 +38,15 @@ public class Cave2 extends Room {
 				Room.current = Room.room[4];
 				player.x = 51;
 				player.y = 549;
+		}
+	}
+	
+	public void draw(Graphics pen) {
+		map.draw(pen);
+		player.draw(pen);
+		
+		for(int i = 0;i < monster.length; i++) {
+			monster[i].draw(pen);
 		}
 	}
 

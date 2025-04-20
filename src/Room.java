@@ -43,6 +43,25 @@ public abstract class Room extends RoomBase {
 		inGameLoopRoomSpecific();
 	}
 	
+	public void playerAttackMonster(Sprite[] monster) {
+		for(int i = 0; i < monster.length; i++) {
+			if(player.sword.overlaps(monster[i])) {
+				monster[i].die();
+			}
+		}
+	}
+	
+	public void monsterMovement(Sprite[] monster) {
+		for(int i = 0; i < monster.length; i++) {
+			if(!monster[i].dead) {
+				checkDistanceFromPlayer(monster[i]);
+				checkWalls(monster[i]);
+				checkOffScreen(monster[i]);
+			}
+		}
+	}
+
+	
 	public void checkDistanceFromPlayer(Sprite s) {
 		int distance = Math.abs(player.x - s.x);
 		

@@ -24,26 +24,11 @@ public class Cave1 extends Room {
 	}
 	
 	public void inGameLoopRoomSpecific() {
-		monsterMovement();
+		monsterMovement(monster);
 		
-		for(int i = 0; i < monster.length; i++) {
-			if(player.sword.overlaps(monster[i])) {
-				monster[i].die();
-			}
-		}
+		playerAttackMonster(monster);
 		
 		enterCave2();
-	}
-	
-	public void monsterMovement() {
-		for(int i = 0; i < monster.length; i++) {
-			if(!monster[i].dead) {
-				checkDistanceFromPlayer(monster[i]);
-				checkWalls(monster[i]);
-				checkOffScreen(monster[i]);
-			}
-		}
-
 	}
 
 	public void enterCave2() {
