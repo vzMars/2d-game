@@ -2,7 +2,7 @@ import java.awt.Graphics;
 
 public class Player extends Sprite {
 	
-	static String[] direction = { "up", "dn", "lt", "rt"};
+	static String[] direction = { "up", "dn", "lt", "rt", "d"};
 	
 	boolean attacking = false;
 	
@@ -10,15 +10,15 @@ public class Player extends Sprite {
 
 	public Player(int x, int y, int scale) {
 		super("p", x, y, scale, scale, direction, 3, 10);
-		sword = new Sword("sword_", direction);
+		sword = new Sword(x, y, scale, "sword_", direction);
 	}
 	
 	public void draw(Graphics pen) {
 		if(moving) {
 			pen.drawImage(animation[pose].nextImage(), x, y, w, h, null);
-		} else if (attacking) {
+		} else if(attacking) {
 			pen.drawImage(animation[pose].stillImage(), x, y, w, h, null);
-			attackDirection(pen);
+			pen.drawImage(sword.currentImage(), sword.x, sword.y, w, h, null);
 		} else {
 			pen.drawImage(animation[pose].stillImage(), x, y, w, h, null);
 		}
@@ -29,24 +29,15 @@ public class Player extends Sprite {
 	
 	public void attack() {
 		attacking = true;
-	}
-	
-	public void attackDirection(Graphics pen) {
-		sword.changeSwordDirection(pose);
-		switch(pose) {
-		  case UP:
-			pen.drawImage(sword.currentImage(), x, y - h, w, h, null);
-		    break;
-		  case DN:
-			  pen.drawImage(sword.currentImage(), x, y + h, w, h, null);
-		    break;
-		  case LT:
-			  pen.drawImage(sword.currentImage(), x - w, y, w, h, null);
-			break;
-		  default:
-			  pen.drawImage(sword.currentImage(), x + w, y, w, h, null);
+		if(pose == UP) {
+			sword.changeSwordDirection(pose, x, y - h);
+		} else if(pose == DN) {
+			sword.changeSwordDirection(pose, x, y + h);
+		} else if(pose == LT) {
+			sword.changeSwordDirection(pose, x - w, y);
+		} else if(pose == RT) {
+			sword.changeSwordDirection(pose, x + w, y);
 		}
-
 	}
 
 }

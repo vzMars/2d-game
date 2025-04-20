@@ -4,19 +4,28 @@ public class Sprite extends Rect {
 	Animation[] animation;
 
 	boolean moving = false;
+	boolean dead = false;
+	
 
 	final int UP = 0;
 	final int DN = 1;
 	final int LT = 2;
 	final int RT = 3;
+	final int DEAD = 4; 
 
 	int pose = DN;
 	
 	int vx;
 	int vy;
+	
+	int startingX;
+	int startingY;
 
 	public Sprite(String name, int x, int y, int w, int h, String[] pose, int count, int duration) {
 		super(x, y, w, h);
+		
+		startingX = x;
+		startingY = y;
 		
 		animation = new Animation[pose.length];
 		
@@ -26,7 +35,7 @@ public class Sprite extends Rect {
 	}
 	
 	public void draw(Graphics pen) {
-		if(moving) {
+		if (moving) {
 			pen.drawImage(animation[pose].nextImage(), x, y, w, h, null);
 		} else {
 			pen.drawImage(animation[pose].stillImage(), x, y, w, h, null);
@@ -85,6 +94,18 @@ public class Sprite extends Rect {
 		} else {
 			pose = DN;
 		}
+	}
+	
+	public void chase(Sprite s) {
+		if(x > s.x)  moveLeft(2);
+		if(x < s.x)  moveRight(2);
+		if(y > s.y)  moveUp(2);
+		if(y < s.y)  moveDown(2);
+	}
+	
+	public void die() {
+		dead = true;
+		pose = DEAD;
 	}
 	
 	public void bounceOffVerticalSurface() {

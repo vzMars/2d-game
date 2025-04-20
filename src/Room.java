@@ -43,6 +43,14 @@ public abstract class Room extends RoomBase {
 		inGameLoopRoomSpecific();
 	}
 	
+	public void checkDistanceFromPlayer(Sprite s) {
+		int distance = Math.abs(player.x - s.x);
+		
+		if (distance < 200) {
+			s.chase(player);
+		}
+	}
+	
 	public void checkWalls(Sprite s) {
 		for(int i = 0; i < map.wall.length; i++) {
 			if(s.overlaps(map.wall[i])) {
@@ -60,7 +68,7 @@ public abstract class Room extends RoomBase {
 	}
 	
 	public void pushAway(Sprite s, Rect r) {
-		if(s instanceof Player) {
+		if(!(s instanceof Girl)) {
 			s.pushAwayFrom(r);
 		} else {
 			if(s.vx > 0 || s.vx < 0) {

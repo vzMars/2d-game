@@ -23,11 +23,11 @@ public class Town extends Room {
 	}
 
 	public void inGameLoopRoomSpecific() {
-		townNpcMovement();
+		npcMovement();
 		enterCave1();
 	}
 	
-	public void townNpcMovement() {
+	public void npcMovement() {
 		girl1.moveY();
 		girl2.moveX();
 		
@@ -38,7 +38,7 @@ public class Town extends Room {
 		checkOffScreen(girl2);
 		
 		if(player.overlaps(girl1)) {
-			girl1.bounceOffVerticalSurface();;
+			girl1.bounceOffVerticalSurface();
 		}
 		
 		if(player.overlaps(girl2)) {
